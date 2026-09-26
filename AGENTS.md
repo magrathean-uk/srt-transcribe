@@ -1,18 +1,50 @@
-# Repository guide
+# Repository guidance
 
-- Read `README.md` and the task-relevant source before editing.
-- Follow `CONTRIBUTING.md` for its relevant workflow.
-- Follow `SECURITY.md` for its relevant workflow.
-- Discover build and test commands from the current manifests, scripts, and documentation; do not invent commands or treat historical results as current.
+## Scope
 
-## Working guidance — GPT-6 Astra
+`openai_srt.py` contains the CLI, audio conversion, API requests, chunking,
+and SRT formatting. It uses the Python standard library and invokes
+`ffmpeg`, `ffprobe`, and `curl`. Keep changes focused and preserve unrelated
+work. Do not add Python dependencies without a concrete need.
 
-Based on [OpenAI's Astra prompting guidance](https://developers.openai.com/api/docs/guides/latest-model#prompting-best-practices), reviewed 2026-09-19. These are working instructions, not a change to model or API settings.
+## Behavior to preserve
 
-- Complete the authorized task through implementation and relevant verification. Make routine choices yourself; ask only when a missing decision materially changes the result or requires new authority. Prepare reviewable work before requesting any necessary final approval.
-- Current user instructions take precedence over repository and skill guidance within system and tool constraints. Preserve explicit exclusions and owner holds. Historical plans and session notes do not grant current authorization. If a file or skill blocks progress, identify its exact path and rule.
-- Keep changes small and practical. Inspect current source and Git status, preserve unrelated work, and use existing conventions. Do not add speculative abstractions, dependencies, or unrelated cleanup. Commit, push, deploy, install, and live-service changes require authorization for that action.
-- Use the reasoning effort the task needs. Follow explicit project delegation rules; otherwise use subagents only when requested, with bounded independent tasks and distinct file ownership. Batch independent reads; serialize dependent operations and conflicting edits.
-- Run meaningful checks for the changed behavior and required project gates. Avoid tests that merely repeat low-impact edits. Broaden or repeat verification only after changes, failures, or unresolved concerns. Distinguish local checks from device, browser, and live-service evidence.
-- Write concise, plain, outcome-first updates. State what changed, why, verification, and material gaps. Avoid filler and unnecessary formatting.
-- Keep durable instructions in AGENTS.md and maintained product documentation. Do not create duplicate assistant instruction files or disposable plans, transcripts, status reports, and screenshots in source directories unless requested. Preserve source, tests, fixtures, assets, licences, and operational evidence regardless of who created them.
+- Environment `OPENAI_API_KEY` takes precedence over the selected dotenv file.
+  Keep keys out of command-line arguments, logs, fixtures, and commits.
+- API requests upload media and may incur charges. Use synthetic data and
+  mocked responses for local checks; use live uploads only when authorized.
+- Chunk offsets are measured on the extracted audio timeline before SRT
+  timestamps are multiplied by `--speed`.
+- Existing nonempty MP3 files are reused. SRT and JSON destinations are
+  overwritten. Changes to these behaviors need explicit documentation.
+- Keep generated audio, subtitles, API responses, and private media out of
+  contributions. Git ignore patterns do not protect files outside this repo.
+- Preserve the full MIT license and contributor copyright notice. Follow
+  [SECURITY.md](SECURITY.md) for vulnerability reports.
+
+## Validation
+
+The existing CI command is `python -m py_compile openai_srt.py` on Python
+3.12. Locally, use `python3 -m py_compile openai_srt.py`; this writes bytecode
+and checks syntax only. Inspect options with `python3 openai_srt.py --help`.
+There is no automated behavioral test suite.
+
+For behavior changes, validate the affected path using synthetic fixtures or
+mocked subprocess/API results. Check speed scaling and chunk offsets for
+timing changes, credential precedence for configuration changes, and file
+reuse and output paths for file-handling changes. Report what was actually
+checked and any remaining live-service or media-quality gap.
+
+Update [README.md](README.md) when options, defaults, output paths, or
+requirements change. See [CONTRIBUTING.md](CONTRIBUTING.md) for review
+expectations. Complete authorized changes through their relevant checks,
+including safe local edits, Git work, and necessary setup implied by the task.
+Honor explicit exclusions without asking again for permission already given.
+Use bounded delegation for independent work when it is useful; keep file
+ownership distinct. Ask only when a consequential action falls outside the
+authorized scope.
+
+## Optional tooling
+
+Consider [Clean Development](https://github.com/magrathean-uk/clean-development)
+when managing development caches across projects.

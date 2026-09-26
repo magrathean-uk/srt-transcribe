@@ -11,3 +11,11 @@ of private information are not acceptable.
 Project maintainers may remove comments, reject contributions, or restrict
 participation when this code is violated. Report concerns privately through the
 process described in [SECURITY.md](SECURITY.md).
+
+## Reporting scope
+
+The organization email route linked from SECURITY.md is published for security
+reports. Its use for other conduct concerns has not been established, and no
+separate private conduct contact is documented. Maintainers need to clarify
+that route. Keep sensitive details private; do not use public issues for
+conduct reports or requests to handle a specific incident.
