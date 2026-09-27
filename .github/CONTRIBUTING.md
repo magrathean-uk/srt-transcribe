@@ -24,7 +24,7 @@ subtitles, or logs that contain private data. Review the paths selected by
 ## Rights and licensing
 
 The repository is licensed under the MIT License. Read
-[`docs/licensing.md`](docs/licensing.md) and the root [`LICENSE`](LICENSE)
+[`docs/licensing.md`](../docs/licensing.md) and the root [`LICENSE`](../LICENSE)
 before contributing.
 
 This repository does not contain a contributor license agreement, DCO, or

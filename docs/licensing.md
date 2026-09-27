@@ -22,7 +22,7 @@ This repository does not document a contributor license agreement, DCO,
 copyright assignment, dual-license program, or separate `NOTICE` file. Do not
 infer additional terms or ownership claims from this guide. Contributors remain
 responsible for having permission to submit their work. See
-[`CONTRIBUTING.md`](../CONTRIBUTING.md) for the contribution guidance.
+[`CONTRIBUTING.md`](../.github/CONTRIBUTING.md) for the contribution guidance.
 
 The Python script uses the Python standard library and invokes locally
 installed `ffmpeg`, `ffprobe`, and `curl`. It also sends selected media to an

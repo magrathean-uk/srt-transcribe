@@ -26,20 +26,15 @@ issued it before reporting the incident.
 
 ## Security boundaries
 
-- The script reads `OPENAI_API_KEY` from the environment or a local dotenv
-  file. Keep dotenv files local and out of commits.
-- Audio from the selected media is converted locally and uploaded to OpenAI's
-  transcription endpoint. The resulting transcript may contain information
-  from that media.
-- The script writes an SRT file, a JSON API response, and normally a compressed
-  audio file to paths chosen from the input or command-line options. Review
-  those locations before sharing or committing their contents.
 - `ffmpeg`, `ffprobe`, and `curl` run locally with the permissions of the user
   who starts the command. Their security and update policies are outside this
   repository.
+- The script redacts the literal API key from one API-error path. Treat all
+  logs and generated files as potentially sensitive and review them before
+  sharing.
 
-The script redacts the literal API key from one API-error path. Treat all logs
-and generated files as potentially sensitive and review them before sharing.
+See [Privacy](../docs/legal/privacy.md) for how srt-transcribe handles your
+media, API key, and local files.
 
 ## Reportable issues
 

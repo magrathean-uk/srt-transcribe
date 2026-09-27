@@ -20,7 +20,10 @@ work. Do not add Python dependencies without a concrete need.
 - Keep generated audio, subtitles, API responses, and private media out of
   contributions. Git ignore patterns do not protect files outside this repo.
 - Preserve the full MIT license and contributor copyright notice. Follow
-  [SECURITY.md](SECURITY.md) for vulnerability reports.
+  [SECURITY.md](.github/SECURITY.md) for vulnerability reports.
+- Legal files (`LICENSE`, `NOTICE`, `docs/legal/`, contributor terms,
+  copyright and attribution strings) are owner-controlled: change them only
+  on the owner's explicit instruction.
 
 ## Validation
 
@@ -36,7 +39,7 @@ reuse and output paths for file-handling changes. Report what was actually
 checked and any remaining live-service or media-quality gap.
 
 Update [README.md](README.md) when options, defaults, output paths, or
-requirements change. See [CONTRIBUTING.md](CONTRIBUTING.md) for review
+requirements change. See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for review
 expectations. Complete authorized changes through their relevant checks,
 including safe local edits, Git work, and necessary setup implied by the task.
 Honor explicit exclusions without asking again for permission already given.

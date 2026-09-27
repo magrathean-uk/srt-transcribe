@@ -1,16 +1,27 @@
-# srt-transcribe
+<h1 align="center">srt-transcribe</h1>
 
-Turn English speech in a video or audio file into an SRT subtitle file using
-OpenAI transcription. This is a single Python script with no third-party
-Python packages.
+<p align="center">Turns English speech in a video or audio file into an SRT subtitle file using OpenAI transcription.</p>
 
-The script extracts mono 16 kHz MP3 audio with FFmpeg, uploads it to OpenAI,
-and converts timed segments into subtitles. By default it speeds the audio
-up to 1.5× and scales the subtitle timestamps back to the original timeline.
-It requests English transcription, not translation. Speaker labels returned
-by the API are not included in the SRT.
+<p align="center">
+  <a href="docs/index.md">Documentation</a> ·
+  <a href="docs/legal/privacy.md">Privacy</a>
+</p>
 
-## Requirements
+## Overview
+
+srt-transcribe extracts mono 16 kHz MP3 audio locally with FFmpeg, uploads it to OpenAI, and converts the timed segments it returns into subtitles. By default it speeds the audio up to 1.5× and scales the subtitle timestamps back to the original timeline. It requests English transcription, not translation, and speaker labels returned by the API are not included in the SRT. This is a single Python script with no third-party Python packages.
+
+## Features
+
+- Single Python script with no third-party Python packages.
+- Extracts and compresses audio locally with FFmpeg before uploading.
+- Speeds audio up by default and rescales subtitle timestamps to match.
+- Splits long recordings into chunks automatically.
+- Requests English transcription, not translation.
+
+## Getting started
+
+### Requirements
 
 - Python 3.9 or newer. The existing CI checks syntax on Python 3.12 only.
 - `ffmpeg` with `libmp3lame` and `atempo`, plus `ffprobe`, on your `PATH`.
@@ -19,9 +30,10 @@ by the API are not included in the SRT.
 
 Audio is uploaded to OpenAI. MP3, JSON, and SRT files remain on your computer.
 Choose media you are permitted to send to that service. See
-[Security and privacy](SECURITY.md) for the data-handling boundaries.
+[Security](.github/SECURITY.md) and [Privacy](docs/legal/privacy.md) for the
+reporting policy and data-handling details.
 
-## Setup
+### Setup
 
 ```bash
 git clone https://github.com/magrathean-uk/srt-transcribe.git
@@ -36,7 +48,7 @@ through the `OPENAI_API_KEY` environment variable, which takes precedence
 over the file. The default `.env` location is beside `openai_srt.py`, even
 when you run the script from another directory.
 
-## Create subtitles
+### Create subtitles
 
 From the checkout directory:
 
@@ -72,7 +84,7 @@ the JSON response is written. Use `--speed 1.0` to transcribe without
 speeding up the audio, then review the subtitles against the original media.
 Transcription accuracy and synchronization are not guaranteed.
 
-## Command reference
+### Command reference
 
 ```bash
 python3 openai_srt.py --help
@@ -91,7 +103,7 @@ A model override must accept `response_format=diarized_json`,
 `chunking_strategy=auto`, and `language=en`, and return timed `segments`.
 Changing the model name does not change the request format.
 
-## Long recordings and output details
+### Long recordings and output details
 
 The script checks the duration of the extracted MP3. Above its configured
 1,400-second threshold, it splits the audio into approximately 1,300-second
@@ -111,11 +123,17 @@ chunk metadata rather than preserving each complete response. Subtitle text
 wraps at word boundaries with a target width of 42 characters, without a
 fixed two-line limit.
 
+## Documentation
+
+- [Licensing and third-party tools](docs/licensing.md)
+- [Privacy](docs/legal/privacy.md)
+
 ## Help and development
 
-See [Support](SUPPORT.md) for common errors and what to include in a bug
-report. For changes, read [Contributing](CONTRIBUTING.md) and the
-[Code of Conduct](CODE_OF_CONDUCT.md).
+See [Support](.github/SUPPORT.md) for common errors and what to include in a
+bug report. For changes, read [Contributing](.github/CONTRIBUTING.md) and the
+[Code of Conduct](.github/CODE_OF_CONDUCT.md). Report vulnerabilities through
+[Security](.github/SECURITY.md).
 
 The existing CI runs a Python syntax check:
 
@@ -126,9 +144,9 @@ python3 -m py_compile openai_srt.py
 This creates local bytecode and does not test FFmpeg, API access, subtitle
 quality, or synchronization. No automated behavioral test suite is included.
 
-## License
+## Licence
 
-Released under the [MIT License](LICENSE), copyright © 2026 srt-transcribe
-contributors. See [Licensing and third-party tools](docs/licensing.md) for
-the distinction between this script, its external tools, and the media you
-process.
+srt-transcribe is open source under the MIT licence. See [LICENSE](LICENSE).
+Contributions: see [CONTRIBUTING](.github/CONTRIBUTING.md).
+
+<sub>© 2026 srt-transcribe contributors · [Legal](https://github.com/magrathean-uk/.github/blob/main/LEGAL.md)</sub>
