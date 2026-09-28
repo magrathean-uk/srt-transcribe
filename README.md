@@ -23,7 +23,7 @@ srt-transcribe extracts mono 16 kHz MP3 audio locally with FFmpeg, uploads it to
 
 ### Requirements
 
-- Python 3.9 or newer. The existing CI checks syntax on Python 3.12 only.
+- Python 3.11 or newer. The existing CI checks syntax on Python 3.12 only.
 - `ffmpeg` with `libmp3lame` and `atempo`, plus `ffprobe`, on your `PATH`.
 - `curl` with support for `--fail-with-body`.
 - An OpenAI API key with access to the selected transcription model.
